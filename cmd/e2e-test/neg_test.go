@@ -739,7 +739,7 @@ func TestNegDisruptive(t *testing.T) {
 				// are temporary and can be ignored
 				foundEvents, err := e2e.CheckSvcEvents(s, serviceName, v1.EventTypeWarning, "error processing service", "is shutting down", "not found")
 				if err != nil {
-					t.Fatalf("errored quering for service events: %q", err)
+					t.Fatalf("errored querying for service events: %q", err)
 				}
 				if foundEvents {
 					t.Fatalf("found error events when none were expected")
