@@ -81,7 +81,7 @@ const (
 	maxNEGDescriptiveLabel = 38
 
 	// maxNEGDescriptiveLabelASM is the max length for namespace, name,
-	// port and DestinationRule subset for neg name. It use one more hypen
+	// port and DestinationRule subset for neg name. It use one more hyphen
 	// connector compared to maxNEGDescriptiveLabel
 	maxNEGDescriptiveLabelASM = maxNEGDescriptiveLabel - 1
 
