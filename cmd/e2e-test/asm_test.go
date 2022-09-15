@@ -190,7 +190,7 @@ func TestASMServiceAndDestinationRule(t *testing.T) {
 				t.Run(tc.desc, func(t *testing.T) {
 					sandbox := s
 					drHost := svcName
-					// crossNamespace will test DestinationRules that refering a serive located in a different namespace
+					// crossNamespace will test DestinationRules that referring a serive located in a different namespace
 					if tc.crossNamespace {
 						sandbox = sSkip
 						drHost = fmt.Sprintf("%s.%s.svc.cluster.local", svcName, s.Namespace)
