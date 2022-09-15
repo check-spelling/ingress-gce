@@ -359,7 +359,7 @@ func TestNEGSyncEndpoints(t *testing.T) {
 			// This test rescales test backend and validate if NEG controller is able to handle it correctly.
 			// Following validation is performed:
 			// 1. validate if expected number of network endpoint is in NEGs
-			// 2. validate if the newtork endpoint is healthy
+			// 2. validate if the network endpoint is healthy
 			// 3. validate by sending traffic to LB VIP and check if expected number of backends can be reached.
 			// First scale up the pods to 5 replicas to try to cover all zones where the cluster spans.
 			scaleAndValidate(5)
