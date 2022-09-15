@@ -1354,7 +1354,7 @@ func TestEnqueueEndpoints(t *testing.T) {
 			if list := informer.GetIndexer().List(); len(list) != 1 {
 				t.Errorf("Got list - %v of size %d, want 1 element", list, len(list))
 			}
-			t.Logf("Checking for enqueue of endopoint create event")
+			t.Logf("Checking for enqueue of endpoint create event")
 			ensureEndpointEnqueue(t, tc.expectedKey, controller)
 		})
 	}

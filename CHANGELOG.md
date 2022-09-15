@@ -1251,7 +1251,7 @@
 - Documentation fixes [\#394](https://github.com/kubernetes/ingress-gce/pull/394) ([rramkumar1](https://github.com/rramkumar1))
 - Implement security policy validator for real [\#393](https://github.com/kubernetes/ingress-gce/pull/393) ([MrHohn](https://github.com/MrHohn))
 - promote http2 to beta [\#382](https://github.com/kubernetes/ingress-gce/pull/382) ([agau4779](https://github.com/agau4779))
-- Typo in message: SyncNetworkEndpiontGroupFailed-\>SyncNetworkEndpointGroupFailed [\#374](https://github.com/kubernetes/ingress-gce/pull/374) ([AdamDang](https://github.com/AdamDang))
+- Typo in message: SyncNetworkEndpointGroupFailed-\>SyncNetworkEndpointGroupFailed [\#374](https://github.com/kubernetes/ingress-gce/pull/374) ([AdamDang](https://github.com/AdamDang))
 - URLMap sync [\#356](https://github.com/kubernetes/ingress-gce/pull/356) ([nicksardo](https://github.com/nicksardo))
 
 ## [v1.2.2](https://github.com/kubernetes/ingress-gce/tree/v1.2.2) (2018-07-09)
