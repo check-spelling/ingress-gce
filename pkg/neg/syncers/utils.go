@@ -205,7 +205,7 @@ func ensureNetworkEndpointGroup(svcNamespace, svcName, negName, zone, negService
 		var err error
 		neg, err = cloud.GetNetworkEndpointGroup(negName, zone, version)
 		if err != nil {
-			klog.Errorf("Error while retriving %q in zone %q: %v after initialization", negName, zone, err)
+			klog.Errorf("Error while retrieving %q in zone %q: %v after initialization", negName, zone, err)
 			return negRef, err
 		}
 	}
