@@ -649,7 +649,7 @@
 - Fix CreateILBSubnet\(\) logic in e2e tests [\#885](https://github.com/kubernetes/ingress-gce/pull/885) ([spencerhance](https://github.com/spencerhance))
 - Fix Ingress names for ILB e2e update test [\#884](https://github.com/kubernetes/ingress-gce/pull/884) ([spencerhance](https://github.com/spencerhance))
 - Refactor ingress key function and finalizer into separate package [\#883](https://github.com/kubernetes/ingress-gce/pull/883) ([skmatti](https://github.com/skmatti))
-- deploy csm neg scirpt and yaml [\#882](https://github.com/kubernetes/ingress-gce/pull/882) ([cadmuxe](https://github.com/cadmuxe))
+- deploy csm neg script and yaml [\#882](https://github.com/kubernetes/ingress-gce/pull/882) ([cadmuxe](https://github.com/cadmuxe))
 - BugFix: Update ingress key function used for GC [\#881](https://github.com/kubernetes/ingress-gce/pull/881) ([skmatti](https://github.com/skmatti))
 - Fix basic ilb test service name [\#880](https://github.com/kubernetes/ingress-gce/pull/880) ([spencerhance](https://github.com/spencerhance))
 - Fix backend services whitebox test to take into account the default backend [\#878](https://github.com/kubernetes/ingress-gce/pull/878) ([rramkumar1](https://github.com/rramkumar1))
