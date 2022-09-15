@@ -159,7 +159,7 @@ func (vm *VM) getCluster() (cluster *gkev1.Cluster, err error) {
 	oauthClient, _, err := transport.NewHTTPClient(context.Background(),
 		option.WithScopes(gkev1.CloudPlatformScope))
 	if err != nil {
-		klog.Errorf("failed to initalize http client: %+v", err)
+		klog.Errorf("failed to initialize http client: %+v", err)
 		return
 	}
 	gkeSvc, err := gkev1.New(oauthClient)
