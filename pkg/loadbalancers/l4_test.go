@@ -667,7 +667,7 @@ func TestHealthCheckFirewallDeletionWithNetLB(t *testing.T) {
 	// Create NetLB Service
 	netlbSvc := test.NewL4NetLBRBSService(8080)
 	l4NetLB := NewL4NetLB(netlbSvc, fakeGCE, meta.Regional, namer, record.NewFakeRecorder(100))
-	// make sure both ilb and netlb use the same l4 healtcheck instance
+	// make sure both ilb and netlb use the same l4 healthcheck instance
 	l4NetLB.healthChecks = l4.healthChecks
 
 	// create netlb resources
@@ -1534,7 +1534,7 @@ func verifyHealthCheckFirewall(l4 *L4, nodeNames []string) error {
 	hcFwName := l4.namer.L4HealthCheckFirewall(l4.Service.Namespace, l4.Service.Name, isSharedHC)
 	hcFwDesc, err := utils.MakeL4LBFirewallDescription(utils.ServiceKeyFunc(l4.Service.Namespace, l4.Service.Name), "", meta.VersionGA, isSharedHC)
 	if err != nil {
-		return fmt.Errorf("failed to calculate decsription for health check for service %v, error %v", l4.Service, err)
+		return fmt.Errorf("failed to calculate description for health check for service %v, error %v", l4.Service, err)
 	}
 
 	return verifyFirewall(l4, nodeNames, hcFwName, hcFwDesc, gce.L4LoadBalancerSrcRanges())

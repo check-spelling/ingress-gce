@@ -61,7 +61,7 @@ func main() {
 	server.registerHandlers()
 	klog.Infof("Default 404 server is running with GOMAXPROCS(%d) on %s:%d\n", runtime.GOMAXPROCS(-1), hostName, *port)
 
-	// The main http server for handling NotFound and healthzrequests
+	// The main http server for handling NotFound and healthz requests
 	go func() {
 		err := server.httpServer.ListenAndServe()
 		if err != nil {
@@ -237,10 +237,10 @@ func (s *server) notFoundHandler() http.HandlerFunc {
 		path := r.URL.Path
 		w.WriteHeader(http.StatusNotFound)
 		// we log 1 out of 10 requests (by default) to the logs
-		fmt.Fprintf(w, "response 404 (backend NotFound), service rules for the path non-existent \n")
+		fmt.Fprintf(w, "response 404 (backend NotFound), service rules for the path nonexistent \n")
 		s.idleChannel <- true
 		if rand.Float64() < *logSampleRequests {
-			klog.Infof("response 404 (backend NotFound), service rules for [ %s ] non-existent \n", path)
+			klog.Infof("response 404 (backend NotFound), service rules for [ %s ] nonexistent \n", path)
 		}
 	}
 }

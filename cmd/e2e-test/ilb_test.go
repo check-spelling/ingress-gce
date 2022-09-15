@@ -110,7 +110,7 @@ func TestILB(t *testing.T) {
 			if err != nil {
 				t.Fatalf("error waiting for Ingress to stabilize: %v", err)
 			}
-			t.Logf("GCLB resources createdd (%s/%s)", s.Namespace, tc.ing.Name)
+			t.Logf("GCLB resources created (%s/%s)", s.Namespace, tc.ing.Name)
 
 			// Perform whitebox testing.
 			if len(ing.Status.LoadBalancer.Ingress) < 1 {
@@ -335,7 +335,7 @@ func TestILBHttps(t *testing.T) {
 			if err != nil {
 				t.Fatalf("error waiting for Ingress to stabilize: %v", err)
 			}
-			t.Logf("GCLB resources createdd (%s/%s)", s.Namespace, ing.Name)
+			t.Logf("GCLB resources created (%s/%s)", s.Namespace, ing.Name)
 
 			// Perform whitebox testing.
 			if len(ing.Status.LoadBalancer.Ingress) < 1 {
@@ -476,7 +476,7 @@ func TestILBUpdate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("error waiting for Ingress to stabilize: %v", err)
 			}
-			t.Logf("GCLB resources createdd (%s/%s)", s.Namespace, tc.ing.Name)
+			t.Logf("GCLB resources created (%s/%s)", s.Namespace, tc.ing.Name)
 
 			// Perform whitebox testing.
 			if len(ing.Status.LoadBalancer.Ingress) < 1 {
@@ -511,7 +511,7 @@ func TestILBUpdate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("error waiting for Ingress to stabilize: %v", err)
 			}
-			t.Logf("GCLB resources createdd (%s/%s)", s.Namespace, tc.ingUpdate.Name)
+			t.Logf("GCLB resources created (%s/%s)", s.Namespace, tc.ingUpdate.Name)
 
 			// Perform whitebox testing.
 			if len(ing.Status.LoadBalancer.Ingress) < 1 {
@@ -703,7 +703,7 @@ func TestILBShared(t *testing.T) {
 				if err != nil {
 					t.Fatalf("error waiting for Ingress to stabilize: %v", err)
 				}
-				t.Logf("GCLB resources createdd (%s/%s)", s.Namespace, ing.Name)
+				t.Logf("GCLB resources created (%s/%s)", s.Namespace, ing.Name)
 
 				// Perform whitebox testing.
 				if len(ing.Status.LoadBalancer.Ingress) < 1 {

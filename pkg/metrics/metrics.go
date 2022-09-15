@@ -298,7 +298,7 @@ func (im *ControllerMetrics) DeleteL4NetLBService(svcKey string) {
 }
 
 // SetServiceAttachment adds sa state to the map to be counted during metrics computation.
-// SetServiceAttachment implments PSCMetricsCollector.
+// SetServiceAttachment implements PSCMetricsCollector.
 func (im *ControllerMetrics) SetServiceAttachment(saKey string, state pscmetrics.PSCState) {
 	im.Lock()
 	defer im.Unlock()
@@ -310,7 +310,7 @@ func (im *ControllerMetrics) SetServiceAttachment(saKey string, state pscmetrics
 }
 
 // DeleteServiceAttachment removes sa state to the map to be counted during metrics computation.
-// DeleteServiceAttachment implments PSCMetricsCollector.
+// DeleteServiceAttachment implements PSCMetricsCollector.
 func (im *ControllerMetrics) DeleteServiceAttachment(saKey string) {
 	im.Lock()
 	defer im.Unlock()
@@ -319,7 +319,7 @@ func (im *ControllerMetrics) DeleteServiceAttachment(saKey string) {
 }
 
 // SetService adds the service to the map to be counted during metrics computation.
-// SetService implments PSCMetricsCollector.
+// SetService implements PSCMetricsCollector.
 func (im *ControllerMetrics) SetService(serviceKey string) {
 	im.Lock()
 	defer im.Unlock()
@@ -331,7 +331,7 @@ func (im *ControllerMetrics) SetService(serviceKey string) {
 }
 
 // DeleteService removes the service from the map to be counted during metrics computation.
-// DeleteService implments PSCMetricsCollector.
+// DeleteService implements PSCMetricsCollector.
 func (im *ControllerMetrics) DeleteService(serviceKey string) {
 	im.Lock()
 	defer im.Unlock()

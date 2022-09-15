@@ -518,7 +518,7 @@ var (
 				cookieAffinity, backendConnectionDraining},
 		},
 		{
-			"non-existent pre-shared cert",
+			"nonexistent pre-shared cert",
 			&v1.Ingress{
 				ObjectMeta: metav1.ObjectMeta{
 					Namespace: defaultNamespace,
