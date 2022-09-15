@@ -271,7 +271,7 @@ func validateAnnotationsDeleted(svc *v1.Service) error {
 		}
 	}
 	if len(unexpectedKeys) != 0 {
-		return fmt.Errorf("Unexpeceted annotations: %v, Service annotations %v", unexpectedKeys, svc.Annotations)
+		return fmt.Errorf("Unexpected annotations: %v, Service annotations %v", unexpectedKeys, svc.Annotations)
 	}
 	return nil
 }
