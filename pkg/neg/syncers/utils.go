@@ -251,7 +251,7 @@ func toZoneNetworkEndpointMap(eds []negtypes.EndpointsData, zoneGetter negtypes.
 					klog.V(2).Infof("Endpoint %q in Endpoints %s/%s does not have a Pod as the TargetRef object. Skipping", endpointAddress.Addresses, ed.Meta.Namespace, ed.Meta.Name)
 					continue
 				}
-				// Skip if the endpoint's pod not matching the subset lables.
+				// Skip if the endpoint's pod not matching the subset labels.
 				if !shouldPodBeInDestinationRuleSubset(podLister, endpointAddress.TargetRef.Namespace, endpointAddress.TargetRef.Name, subsetLabels) {
 					continue
 				}
@@ -400,7 +400,7 @@ func shouldPodBeInNeg(podLister cache.Indexer, namespace, name string) bool {
 	return true
 }
 
-// shouldPodBeInDestinationRuleSubset return ture if pod match the DestinationRule subset lables.
+// shouldPodBeInDestinationRuleSubset return ture if pod match the DestinationRule subset labels.
 func shouldPodBeInDestinationRuleSubset(podLister cache.Indexer, namespace, name string, subsetLabels string) bool {
 	if podLister == nil {
 		return false
