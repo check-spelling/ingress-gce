@@ -897,7 +897,7 @@ type CorsPolicy struct {
 	AllowHeaders []string `json:"allowHeaders,omitempty"`
 	// Specifies the content for the Access-Control-Allow-Methods header.
 	AllowMethods []string `json:"allowMethods,omitempty"`
-	// Specifies the regualar expression patterns that match allowed
+	// Specifies the regular expression patterns that match allowed
 	// origins. For regular expression grammar please see
 	// github.com/google/re2/wiki/Syntax An origin is allowed if it matches
 	// either an item in allowOrigins or an item in allowOriginRegexes.
