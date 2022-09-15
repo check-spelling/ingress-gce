@@ -55,7 +55,7 @@ func negServicePorts(ann *annotations.NegAnnotation, knownSvcTupleSet types.SvcP
 }
 
 // castToDestinationRule cast Unstructured obj to istioV1alpha3.DestinationRule
-// Return targetServiceNamespace, targetSeriveName(DestinationRule.Host), DestionationRule and error.
+// Return targetServiceNamespace, targetSeriveName(DestinationRule.Host), DestinationRule and error.
 func castToDestinationRule(drus *unstructured.Unstructured) (string, string, *istioV1alpha3.DestinationRule, error) {
 	drJSON, err := json.Marshal(drus.Object["spec"])
 	if err != nil {

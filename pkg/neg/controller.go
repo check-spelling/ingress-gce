@@ -652,7 +652,7 @@ func (c *Controller) mergeDefaultBackendServicePortInfoMap(key string, service *
 }
 
 // getCSMPortInfoMap gets the PortInfoMap for service and DestinationRules.
-// If enableCSM = true, the controller will create NEGs for every port/subsets combinations for the DestinaitonRules.
+// If enableCSM = true, the controller will create NEGs for every port/subsets combinations for the DestinationRules.
 // It will also create NEGs for all the ports of the service that referred by the DestinationRules.
 func (c *Controller) getCSMPortInfoMap(namespace, name string, service *apiv1.Service) (negtypes.PortInfoMap, negtypes.PortInfoMap, error) {
 	destinationRulesPortInfoMap := make(negtypes.PortInfoMap)
@@ -951,7 +951,7 @@ func gatherPortMappingFromService(svc *apiv1.Service) negtypes.SvcPortTupleSet {
 }
 
 // getDestinationRulesFromStore returns all DestinationRules that referring service svc.
-// Please notice that a DestionationRule can point to a service in a different namespace.
+// Please notice that a DestinationRule can point to a service in a different namespace.
 func getDestinationRulesFromStore(store cache.Store, svc *apiv1.Service, logger klog.Logger) (drs map[apimachinerytypes.NamespacedName]*istioV1alpha3.DestinationRule) {
 	drs = make(map[apimachinerytypes.NamespacedName]*istioV1alpha3.DestinationRule)
 	for _, obj := range store.List() {
