@@ -298,7 +298,7 @@ func (n *Namer) NameBelongsToCluster(name string) bool {
 
 }
 
-// IGBackend constructs the name for a backend service targetting instance groups.
+// IGBackend constructs the name for a backend service targeting instance groups.
 func (n *Namer) IGBackend(port int64) string {
 	return n.decorateName(fmt.Sprintf("%v-%v-%d", n.prefix, backendPrefix, port))
 }
