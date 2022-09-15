@@ -931,7 +931,7 @@
 - GKE BackendConfig permissions change `container.backendConfigs.get` does not exist [\#538](https://github.com/kubernetes/ingress-gce/issues/538)
 - A new home for 404-server \(defaultbackend\) [\#498](https://github.com/kubernetes/ingress-gce/issues/498)
 - Does not work if workers are in different subnet.  [\#282](https://github.com/kubernetes/ingress-gce/issues/282)
-- original http request origin and host headers are overriden [\#179](https://github.com/kubernetes/ingress-gce/issues/179)
+- original http request origin and host headers are overridden [\#179](https://github.com/kubernetes/ingress-gce/issues/179)
 
 **Merged pull requests:**
 
@@ -999,7 +999,7 @@
 
 - GCP - Kubernetes Ingress Backend service unhealthy [\#621](https://github.com/kubernetes/ingress-gce/issues/621)
 - BackendConfig security policy not enforced  [\#616](https://github.com/kubernetes/ingress-gce/issues/616)
-- original http request origin and host headers are overriden [\#179](https://github.com/kubernetes/ingress-gce/issues/179)
+- original http request origin and host headers are overridden [\#179](https://github.com/kubernetes/ingress-gce/issues/179)
 
 **Merged pull requests:**
 
