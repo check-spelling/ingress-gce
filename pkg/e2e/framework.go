@@ -110,7 +110,7 @@ func NewFramework(config *rest.Config, options Options) *Framework {
 	}
 	f.statusManager = NewStatusManager(f)
 
-	// Preparing dynamic client if Istio:DestinationRule CRD exisits and matches the required version.
+	// Preparing dynamic client if Istio:DestinationRule CRD exists and matches the required version.
 	// The client is used by the ASM e2e tests.
 	destinationRuleCRD, err := f.crdClient.ApiextensionsV1().CustomResourceDefinitions().Get(context.TODO(), destinationRuleCRDName, metav1.GetOptions{})
 	if err != nil {
