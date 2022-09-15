@@ -28,7 +28,7 @@ import (
 	"k8s.io/ingress-gce/pkg/neg/types"
 )
 
-// NegSyncerType represents the the neg syncer type
+// NegSyncerType represents the neg syncer type
 type NegSyncerType string
 
 // negServicePorts returns the SvcPortTupleSet that matches the exposed service port in the NEG annotation.

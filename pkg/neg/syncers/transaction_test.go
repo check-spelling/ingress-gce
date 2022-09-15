@@ -1704,7 +1704,7 @@ func createNegCR(testNegName string, creationTS metav1.Time, populateInitialized
 	return neg
 }
 
-// checkNegCR validates the the NegObjectReferences and the LastSyncTime. It will not validate the conditions fields but ensures at most 2 conditions exist
+// checkNegCR validates the NegObjectReferences and the LastSyncTime. It will not validate the conditions fields but ensures at most 2 conditions exist
 func checkNegCR(t *testing.T, negCR *negv1beta1.ServiceNetworkEndpointGroup, previousLastSyncTime metav1.Time, expectZones sets.String, expectedNegRefs map[string]negv1beta1.NegObjectReference, expectSyncTimeUpdate, expectErr bool) {
 	if expectSyncTimeUpdate && !previousLastSyncTime.Before(&negCR.Status.LastSyncTime) {
 		t.Errorf("Expected Neg CR to have an updated LastSyncTime")
