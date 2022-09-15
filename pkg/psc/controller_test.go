@@ -1325,7 +1325,7 @@ func verifyServiceAttachmentCRDeletion(controller *Controller, sa *sav1.ServiceA
 }
 
 // verifyGCEServiceAttachmentDeletion verifies that the provided CR's corresponding GCE
-// Service Attachmen resource has been deleted
+// Service Attachment resource has been deleted
 func verifyGCEServiceAttachmentDeletion(controller *Controller, sa *sav1.ServiceAttachment) error {
 	gceSAName := controller.saNamer.ServiceAttachment(sa.Namespace, sa.Name, string(sa.UID))
 	gceSA, err := getServiceAttachment(controller.cloud, gceSAName)
