@@ -16,7 +16,7 @@ import (
 )
 
 // ConfigMapConfigController is the ConfigMap based config controller.
-// If cmConfigModeEnabled set to true, it will load the config from configmap: configMapNamespace/configMapName and restart ingress controller if the config has any ligeal changes.
+// If cmConfigModeEnabled set to true, it will load the config from configmap: configMapNamespace/configMapName and restart ingress controller if the config has any illegal changes.
 // If cmConfigModeEnabled set to false, it will return the default values for the configs.
 type ConfigMapConfigController struct {
 	configMapNamespace     string
