@@ -124,14 +124,14 @@ func TestASMServiceAndDestinationRule(t *testing.T) {
 			// Different versions will be used as DestinationRule: subset
 			for _, deployment := range []struct {
 				deploymentName string
-				replics        int32
+				replicas       int32
 				version        string
 			}{
-				{deploymentName: "deployment-v1", replics: 1, version: "v1"},
-				{deploymentName: "deployment-v2", replics: 2, version: "v2"},
-				{deploymentName: "deployment-v3", replics: 3, version: "v3"},
+				{deploymentName: "deployment-v1", replicas: 1, version: "v1"},
+				{deploymentName: "deployment-v2", replicas: 2, version: "v2"},
+				{deploymentName: "deployment-v3", replicas: 3, version: "v3"},
 			} {
-				if err := e2e.CreatePorterDeployment(s, deployment.deploymentName, deployment.replics, deployment.version); err != nil {
+				if err := e2e.CreatePorterDeployment(s, deployment.deploymentName, deployment.replicas, deployment.version); err != nil {
 					t.Errorf("Failed to create deployment, Error: %s", err)
 				}
 			}

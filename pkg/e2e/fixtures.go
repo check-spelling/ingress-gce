@@ -406,13 +406,13 @@ func DeleteSubnet(s *Sandbox, name string) error {
 }
 
 // CreatePorterDeployment creates a Deployment with porter image.
-func CreatePorterDeployment(s *Sandbox, name string, replics int32, version string) error {
+func CreatePorterDeployment(s *Sandbox, name string, replicas int32, version string) error {
 	env := fmt.Sprintf("SERVE_PORT_%d", porterPort)
 	labels := map[string]string{"app": "porter", "version": version}
 	deployment := apiappsv1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{Namespace: s.Namespace, Name: name},
 		Spec: apiappsv1.DeploymentSpec{
-			Replicas: &replics,
+			Replicas: &replicas,
 			Selector: &metav1.LabelSelector{MatchLabels: labels},
 			Template: apiv1.PodTemplateSpec{
 				ObjectMeta: metav1.ObjectMeta{Labels: labels},
