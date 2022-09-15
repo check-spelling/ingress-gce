@@ -172,7 +172,7 @@ func checkBackendService(lc *L4NetLBController, svc *v1.Service) error {
 	igName := lc.namer.InstanceGroup()
 	for _, b := range bs.Backends {
 		if !strings.Contains(b.Group, igName) {
-			return fmt.Errorf("Backend Ingstance Group Link mismatch: %s != %s", igName, b.Group)
+			return fmt.Errorf("Backend Instance Group Link mismatch: %s != %s", igName, b.Group)
 		}
 	}
 	ig, err := lc.ctx.Cloud.GetInstanceGroup(igName, testGCEZone)
