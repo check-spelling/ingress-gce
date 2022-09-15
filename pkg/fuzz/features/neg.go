@@ -161,7 +161,7 @@ func verifyBackend(env fuzz.ValidatorEnv, bsName string, backendKeyword string, 
 		}
 	}
 
-	// Examine if ingress url map is targeting the backend service
+	// Examine if ingress url map is targetting the backend service
 	urlMap, err := env.Cloud().UrlMaps().Get(ctx, &meta.Key{Name: urlMapName})
 	if err != nil {
 		return err
@@ -206,7 +206,7 @@ func verifyNegRegionBackend(env fuzz.ValidatorEnv, bsName, backendKeyword, urlMa
 		}
 	}
 
-	// Examine if ingress url map is targeting the backend service
+	// Examine if ingress url map is targetting the backend service
 	urlMap, err := env.Cloud().BetaRegionUrlMaps().Get(ctx, &meta.Key{Name: urlMapName, Region: region})
 	if err != nil {
 		return err

@@ -52,7 +52,7 @@ type IngressFrontendNamerFactory interface {
 // BackendNamer is an interface to name GCE backend resources. It wraps backend
 // naming policy of namer.Namer.
 type BackendNamer interface {
-	// IGBackend constructs the name for a backend service targeting instance groups.
+	// IGBackend constructs the name for a backend service targetting instance groups.
 	IGBackend(nodePort int64) string
 	// NEG returns the gce neg name based on the service namespace, name
 	// and target port.
