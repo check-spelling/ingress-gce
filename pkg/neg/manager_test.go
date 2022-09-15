@@ -1011,7 +1011,7 @@ func TestNegCRDuplicateCreations(t *testing.T) {
 				portInfo := portInfoMap[negtypes.PortInfoMapKey{ServicePort: svcTuple1.Port, Subset: ""}]
 				checkNegCR(t, &negs.Items[0], svcKey, svc1.UID, portInfo)
 				// If update was unnecessary, the resource version should not change.
-				// If upate was necessary, the same CR should be used for an update so the resource
+				// If update was necessary, the same CR should be used for an update so the resource
 				// version should be unchanged. API server will change resource version.
 				if negs.Items[0].ResourceVersion != testNeg.ResourceVersion {
 					t.Errorf("neg resource version should not be updated")
