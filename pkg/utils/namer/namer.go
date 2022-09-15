@@ -204,7 +204,7 @@ func (n *Namer) Firewall() string {
 func truncate(key string) string {
 	if len(key) > nameLenLimit {
 		// GCE requires names to end with an alphanumeric, but allows
-		// characters like '-', so make sure the trucated name ends
+		// characters like '-', so make sure the truncated name ends
 		// legally.
 		return fmt.Sprintf("%v%v", key[:nameLenLimit], alphaNumericChar)
 	}

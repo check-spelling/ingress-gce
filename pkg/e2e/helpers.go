@@ -1098,7 +1098,7 @@ func CheckServiceAttachmentFinalizer(cr *sav1.ServiceAttachment) error {
 func Truncate(key string) string {
 	if len(key) > 62 {
 		// GCE requires names to end with an alphanumeric, but allows
-		// characters like '-', so make sure the trucated name ends
+		// characters like '-', so make sure the truncated name ends
 		// legally.
 		return fmt.Sprintf("%v%v", key[:62], "0")
 	}
