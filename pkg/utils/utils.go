@@ -409,7 +409,7 @@ var (
 	CandidateNodesPredicate = func(node *api_v1.Node) bool {
 		return nodePredicateInternal(node, false, false)
 	}
-	// CandidateNodesPredicateIncludeUnreadyExcludeUpgradingNodes selects all nodes except ones that are upgradind and/or have any exclude labels. This function tolerates unready nodes.
+	// CandidateNodesPredicateIncludeUnreadyExcludeUpgradingNodes selects all nodes except ones that are upgrading and/or have any exclude labels. This function tolerates unready nodes.
 	// TODO(prameshj) - Once the kubernetes/kubernetes Predicate function includes Unready nodes and the GKE nodepool code sets exclude labels on upgrade, this can be replaced with CandidateNodesPredicate.
 	CandidateNodesPredicateIncludeUnreadyExcludeUpgradingNodes = func(node *api_v1.Node) bool {
 		return nodePredicateInternal(node, true, true)
