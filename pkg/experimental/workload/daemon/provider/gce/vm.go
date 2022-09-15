@@ -193,7 +193,7 @@ func (vm *VM) KubeConfig() (config *rest.Config, err error) {
 		return
 	}
 
-	// Get contianer master address and CA
+	// Get container master address and CA
 	cluster, err := vm.getCluster()
 	if err != nil {
 		klog.Errorf("unable to get the cluster info: %+v", err)
