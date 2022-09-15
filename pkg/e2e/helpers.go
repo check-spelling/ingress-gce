@@ -476,7 +476,7 @@ func CheckGCLB(gclb *fuzz.GCLB, numForwardingRules int, numBackendServices int) 
 	return nil
 }
 
-// CheckDistinctResponseHost issue GET call to the vip for 100 times, parse the reponses and calculate the number of distinct backends.
+// CheckDistinctResponseHost issue GET call to the vip for 100 times, parse the responses and calculate the number of distinct backends.
 func CheckDistinctResponseHost(vip string, expectDistinctHosts int, tolerateTransientError bool) error {
 	var errs []error
 	const repeat = 100
