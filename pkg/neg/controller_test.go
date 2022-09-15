@@ -1097,7 +1097,7 @@ func TestMergeCSMPortInfoMap(t *testing.T) {
 	defer controller.stop()
 	n1s1 := newTestServiceCus(t, controller, "namespace1", "service1", []int32{80, 90})
 	n2s1 := newTestServiceCus(t, controller, "namespace2", "service1", []int32{90})
-	ds1, usDr1 := newTestDestinationRule(t, controller, "namespac2", "test-destination-rule", "service1.namespace1", []string{"v1", "v2"})
+	ds1, usDr1 := newTestDestinationRule(t, controller, "name-space2", "test-destination-rule", "service1.namespace1", []string{"v1", "v2"})
 	if err := controller.destinationRuleLister.Add(usDr1); err != nil {
 		t.Fatal(err)
 	}
