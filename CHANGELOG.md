@@ -811,7 +811,7 @@
 
 **Closed issues:**
 
-- HTTS frontend listener isn't deleted after setting ingress.allow-http: "false" annotation [\#766](https://github.com/kubernetes/ingress-gce/issues/766)
+- HTTPS frontend listener isn't deleted after setting ingress.allow-http: "false" annotation [\#766](https://github.com/kubernetes/ingress-gce/issues/766)
 - Backends healthchecks and expected operation [\#762](https://github.com/kubernetes/ingress-gce/issues/762)
 - Update GKE self managed script [\#758](https://github.com/kubernetes/ingress-gce/issues/758)
 - Deploying to GKE self managed has invalid YAML [\#755](https://github.com/kubernetes/ingress-gce/issues/755)
