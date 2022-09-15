@@ -90,16 +90,16 @@ func (s *syncer) Start() error {
 			err := s.core.sync()
 			if err != nil {
 				delay, retryErr := s.backoff.NextRetryDelay()
-				retryMesg := ""
+				retryMsg := ""
 				if retryErr == ErrRetriesExceeded {
-					retryMesg = "(will not retry)"
+					retryMsg = "(will not retry)"
 				} else {
 					retryCh = s.clock.After(delay)
-					retryMesg = "(will retry)"
+					retryMsg = "(will retry)"
 				}
 
 				if svc := getService(s.serviceLister, s.Namespace, s.Name); svc != nil {
-					s.recorder.Eventf(svc, apiv1.EventTypeWarning, "SyncNetworkEndpointGroupFailed", "Failed to sync NEG %q %s: %v", s.NegSyncerKey.NegName, retryMesg, err)
+					s.recorder.Eventf(svc, apiv1.EventTypeWarning, "SyncNetworkEndpointGroupFailed", "Failed to sync NEG %q %s: %v", s.NegSyncerKey.NegName, retryMsg, err)
 				}
 			} else {
 				s.backoff.ResetRetryDelay()
