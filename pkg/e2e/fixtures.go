@@ -461,7 +461,7 @@ func GetConfigMap(s *Sandbox, namespace, name string) (map[string]string, error)
 	return cm.Data, nil
 }
 
-// EnsureConfigMap ensures the namespace:name ConfigMap Data fieled, create if the target not exist.
+// EnsureConfigMap ensures the namespace:name ConfigMap Data field, create if the target not exist.
 func EnsureConfigMap(s *Sandbox, namespace, name string, data map[string]string) error {
 	cm := v1.ConfigMap{ObjectMeta: metav1.ObjectMeta{Namespace: namespace, Name: name}, Data: data}
 	_, err := s.f.Clientset.CoreV1().ConfigMaps(namespace).Update(context.TODO(), &cm, metav1.UpdateOptions{})

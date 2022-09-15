@@ -41,9 +41,9 @@ func TestASMConfig(t *testing.T) {
 			},
 			{
 				desc:                "Invalid ConfigMap filed equals to disable",
-				configMap:           map[string]string{"enable-unknow-feild": "INVALID1"},
+				configMap:           map[string]string{"enable-unknow-field": "INVALID1"},
 				wantASMReady:        false,
-				wantConfigMapEvents: []string{"The map contains a unknown key-value pair: enable-unknow-feild:INVALID1"},
+				wantConfigMapEvents: []string{"The map contains a unknown key-value pair: enable-unknow-field:INVALID1"},
 			},
 			{
 				desc:         "Set enable-asm to true should restart the controller",
