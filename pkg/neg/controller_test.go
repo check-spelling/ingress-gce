@@ -1513,7 +1513,7 @@ func validateDestinationRuleAnnotationWithPortInfoMap(t *testing.T, usdr *unstru
 }
 
 // validateServiceStateAnnotationWithPortNameMap validates all aspects of the service annotation
-// and also checks for custon names if specified in given portNameMap
+// and also checks for custom names if specified in given portNameMap
 func validateServiceStateAnnotationWithPortNameMap(t *testing.T, svc *apiv1.Service, svcPorts []int32, namer negtypes.NetworkEndpointGroupNamer, portNameMap map[int32]string) {
 
 	negStatus := validateServiceStateAnnotationExceptNames(t, svc, svcPorts)
