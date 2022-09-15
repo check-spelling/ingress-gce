@@ -324,7 +324,7 @@ func (t *Translator) TranslateIngress(ing *v1.Ingress, systemDefaultBackend util
 
 // validateAndGetPaths will validate the path based on the specifed path type and will return the
 // the path rules that should be used. If no path type is provided, the path type will be assumed
-// to be ImplementationSpecific. If a non existent path type is provided, an error will be returned.
+// to be ImplementationSpecific. If a nonexistent path type is provided, an error will be returned.
 func validateAndGetPaths(path v1.HTTPIngressPath) ([]string, error) {
 	pathType := v1.PathTypeImplementationSpecific
 

@@ -372,7 +372,7 @@ func (lc *L4NetLBController) sync(key string) error {
 		return fmt.Errorf("Failed to lookup L4 External LoadBalancer service for key %s : %w", key, err)
 	}
 	if !exists || svc == nil {
-		klog.V(3).Infof("Ignoring sync of non-existent service %s", key)
+		klog.V(3).Infof("Ignoring sync of nonexistent service %s", key)
 		return nil
 	}
 

@@ -1033,7 +1033,7 @@ func TestCreateBothLoadBalancers(t *testing.T) {
 }
 
 // Test StaticIP annotation behavior.
-// When a non-existent StaticIP value is specified, ingress creation must fail.
+// When a nonexistent StaticIP value is specified, ingress creation must fail.
 func TestStaticIP(t *testing.T) {
 	j := newTestJig(t)
 	gceUrlMap := utils.NewGCEURLMap()
@@ -1052,7 +1052,7 @@ func TestStaticIP(t *testing.T) {
 	}
 
 	if _, err := j.pool.Ensure(lbInfo); err == nil {
-		t.Fatalf("expected error ensuring ingress with non-existent static ip")
+		t.Fatalf("expected error ensuring ingress with nonexistent static ip")
 	}
 	// Create static IP
 	err := j.fakeGCE.ReserveGlobalAddress(&compute.Address{Name: "teststaticip", Address: "1.2.3.4"})

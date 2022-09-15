@@ -86,9 +86,9 @@ func TestGetForwardingRule(t *testing.T) {
 		},
 		{
 			existingFwdRules: []*composite.ForwardingRule{elbForwardingRule, ilbForwardingRule},
-			getFwdRuleName:   "non-existent-rule",
+			getFwdRuleName:   "nonexistent-rule",
 			expectedFwdRule:  nil,
-			desc:             "Get non existent forwarding rule",
+			desc:             "Get nonexistent forwarding rule",
 		},
 	}
 
@@ -148,9 +148,9 @@ func TestDeleteForwardingRule(t *testing.T) {
 		},
 		{
 			existingFwdRules:        []*composite.ForwardingRule{elbForwardingRule, ilbForwardingRule},
-			deleteFwdRuleName:       "non-existent",
+			deleteFwdRuleName:       "nonexistent",
 			shouldNotDeleteFwdRules: []*composite.ForwardingRule{elbForwardingRule, ilbForwardingRule},
-			desc:                    "Delete non existent forwarding rule",
+			desc:                    "Delete nonexistent forwarding rule",
 		},
 	}
 
