@@ -84,7 +84,7 @@ func TestController(t *testing.T) {
 			doNotWantLog:         "Not found the configmap based config",
 		},
 		{
-			desc:                 "invalide config should give the default config",
+			desc:                 "invalid config should give the default config",
 			defaultConfigMapData: map[string]string{"enable-asm": "TTTTT"},
 			updateConfigMapData:  nil,
 			wantConfig:           &defaultConfig,
