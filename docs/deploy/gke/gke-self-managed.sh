@@ -211,7 +211,7 @@ case $key in
   --no-confirm)
   CONFIRM=0
 
-  # --quiet flag makes gloud prompts non-interactive, ensuring this script can be
+  # --quiet flag makes gcloud prompts non-interactive, ensuring this script can be
   # used in automated flows (user can also use this to provide extra, arbitrary flags).
   GCLOUD_EXTRA_FLAGS="${GCLOUD_EXTRA_FLAGS} --quiet"
   shift
