@@ -988,7 +988,7 @@
 - Add pkg/common/operator & pkg/common/typed to make resource joins much cleaner. [\#517](https://github.com/kubernetes/ingress-gce/pull/517) ([rramkumar1](https://github.com/rramkumar1))
 - Add Syncer Skeleton [\#509](https://github.com/kubernetes/ingress-gce/pull/509) ([freehan](https://github.com/freehan))
 -  Welcome defaultbackend to the ingress-gce repo [\#503](https://github.com/kubernetes/ingress-gce/pull/503) ([jonpulsifer](https://github.com/jonpulsifer))
-- Add a Backofff Handler utils [\#499](https://github.com/kubernetes/ingress-gce/pull/499) ([freehan](https://github.com/freehan))
+- Add a Backoff Handler utils [\#499](https://github.com/kubernetes/ingress-gce/pull/499) ([freehan](https://github.com/freehan))
 
 # Change Log
 
