@@ -581,7 +581,7 @@ func CheckNegs(negs map[meta.Key]*fuzz.NetworkEndpoints, expectHealthy bool, exp
 }
 
 // CheckNegStatus checks if the NEG Status annotation is presented and in the expected state
-func CheckNegStatus(svc *v1.Service, expectSvcPors []string) (annotations.NegStatus, error) {
+func CheckNegStatus(svc *v1.Service, expectSvcPorts []string) (annotations.NegStatus, error) {
 	annotation, ok := svc.Annotations[annotations.NEGStatusKey]
 	if !ok {
 		return annotations.NegStatus{}, fmt.Errorf("service %s/%s does not have neg status annotation: %v", svc.Namespace, svc.Name, svc)
@@ -592,7 +592,7 @@ func CheckNegStatus(svc *v1.Service, expectSvcPors []string) (annotations.NegSta
 		return negStatus, fmt.Errorf("service %s/%s has invalid neg status annotation %q: %v", svc.Namespace, svc.Name, annotation, err)
 	}
 
-	expectPorts := sets.NewString(expectSvcPors...)
+	expectPorts := sets.NewString(expectSvcPorts...)
 	existingPorts := sets.NewString()
 	for port := range negStatus.NetworkEndpointGroups {
 		existingPorts.Insert(port)
