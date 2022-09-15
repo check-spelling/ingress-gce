@@ -856,7 +856,7 @@ func WaitForStandaloneNegDeletion(ctx context.Context, c cloud.Cloud, s *Sandbox
 	})
 }
 
-// CheckDeletedNegCRs verifies that the provided neg list does not have negs that are associated with the provided neg atrributes
+// CheckDeletedNegCRs verifies that the provided neg list does not have negs that are associated with the provided neg attributes
 func CheckDeletedNegCRs(s *Sandbox, negName, port string) (bool, error) {
 	svcNeg, err := s.f.SvcNegClient.NetworkingV1beta1().ServiceNetworkEndpointGroups(s.Namespace).Get(context.Background(), negName, metav1.GetOptions{})
 	if err != nil {
