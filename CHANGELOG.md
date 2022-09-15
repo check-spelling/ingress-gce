@@ -832,7 +832,7 @@
 - Rebase of \#559 "Scaffolding for FrontendConfig" [\#753](https://github.com/kubernetes/ingress-gce/pull/753) ([spencerhance](https://github.com/spencerhance))
 - Emit event if Ingress spec does not contain valid config to setup frontend resources [\#752](https://github.com/kubernetes/ingress-gce/pull/752) ([rramkumar1](https://github.com/rramkumar1))
 - readiness reflector [\#748](https://github.com/kubernetes/ingress-gce/pull/748) ([freehan](https://github.com/freehan))
-- Adding the /healthz handler to the 404-default-server-with-metris to … [\#747](https://github.com/kubernetes/ingress-gce/pull/747) ([vbannai](https://github.com/vbannai))
+- Adding the /healthz handler to the 404-default-server-with-metrics to … [\#747](https://github.com/kubernetes/ingress-gce/pull/747) ([vbannai](https://github.com/vbannai))
 - Update canonical rbac.yaml with latest, minimal bindings [\#746](https://github.com/kubernetes/ingress-gce/pull/746) ([dekkagaijin](https://github.com/dekkagaijin))
 - Adding docker configuration file for the 404-server-with-metrics and … [\#745](https://github.com/kubernetes/ingress-gce/pull/745) ([vbannai](https://github.com/vbannai))
 - More composite types [\#742](https://github.com/kubernetes/ingress-gce/pull/742) ([spencerhance](https://github.com/spencerhance))
