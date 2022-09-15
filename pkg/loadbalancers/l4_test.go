@@ -1534,7 +1534,7 @@ func verifyHealthCheckFirewall(l4 *L4, nodeNames []string) error {
 	hcFwName := l4.namer.L4HealthCheckFirewall(l4.Service.Namespace, l4.Service.Name, isSharedHC)
 	hcFwDesc, err := utils.MakeL4LBFirewallDescription(utils.ServiceKeyFunc(l4.Service.Namespace, l4.Service.Name), "", meta.VersionGA, isSharedHC)
 	if err != nil {
-		return fmt.Errorf("failed to calculate decsription for health check for service %v, error %v", l4.Service, err)
+		return fmt.Errorf("failed to calculate description for health check for service %v, error %v", l4.Service, err)
 	}
 
 	return verifyFirewall(l4, nodeNames, hcFwName, hcFwDesc, gce.L4LoadBalancerSrcRanges())
