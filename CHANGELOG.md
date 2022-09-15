@@ -400,7 +400,7 @@
 **Merged pull requests:**
 
 - Cherrypick \#1105 into Release-1.9 [\#1121](https://github.com/kubernetes/ingress-gce/pull/1121) ([freehan](https://github.com/freehan))
-- Cherrpick \#1119 \[Force send Enable field for LogConfig\] into release-1.9 [\#1120](https://github.com/kubernetes/ingress-gce/pull/1120) ([skmatti](https://github.com/skmatti))
+- Cherrypick \#1119 \[Force send Enable field for LogConfig\] into release-1.9 [\#1120](https://github.com/kubernetes/ingress-gce/pull/1120) ([skmatti](https://github.com/skmatti))
 - Update generated code for BackendConfig in release-1.9 [\#1115](https://github.com/kubernetes/ingress-gce/pull/1115) ([skmatti](https://github.com/skmatti))
 - Cherry Pick \#1107 \[Wait for caches to sync before running node sync\] to release-1.9 [\#1114](https://github.com/kubernetes/ingress-gce/pull/1114) ([spencerhance](https://github.com/spencerhance))
 - Cherry Pick \#1104 \[Change project permissions check from 'foo' to 'k8s-ingress-svc-acct-...\] to release-1.9… [\#1113](https://github.com/kubernetes/ingress-gce/pull/1113) ([spencerhance](https://github.com/spencerhance))
