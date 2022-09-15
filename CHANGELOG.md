@@ -1322,7 +1322,7 @@
 - merge Ingress NEG annotation and Expose NEG annotation [\#350](https://github.com/kubernetes/ingress-gce/pull/350) ([agau4779](https://github.com/agau4779))
 - Add Liveness Probe for NEG controller [\#349](https://github.com/kubernetes/ingress-gce/pull/349) ([freehan](https://github.com/freehan))
 - Make sure we get a BackendService after updating it to populate object fingerprint \[WIP\] [\#348](https://github.com/kubernetes/ingress-gce/pull/348) ([rramkumar1](https://github.com/rramkumar1))
-- On removal of backend config name from service annotaion, ensure no existing settings are affected [\#347](https://github.com/kubernetes/ingress-gce/pull/347) ([rramkumar1](https://github.com/rramkumar1))
+- On removal of backend config name from service annotation, ensure no existing settings are affected [\#347](https://github.com/kubernetes/ingress-gce/pull/347) ([rramkumar1](https://github.com/rramkumar1))
 - Adds readme for e2e-tests [\#346](https://github.com/kubernetes/ingress-gce/pull/346) ([bowei](https://github.com/bowei))
 - Modify IAP + CDN support to not touch settings if section in spec is missing [\#345](https://github.com/kubernetes/ingress-gce/pull/345) ([rramkumar1](https://github.com/rramkumar1))
 - Delete ingress and wait for resource deletion [\#344](https://github.com/kubernetes/ingress-gce/pull/344) ([bowei](https://github.com/bowei))
