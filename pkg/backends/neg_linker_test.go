@@ -252,7 +252,7 @@ func TestMergeBackends(t *testing.T) {
 			if !tc.expectError {
 				diffBackend := diffBackends(tc.expect, ret)
 				if !diffBackend.isEqual() {
-					t.Errorf("Expect tc.expect == ret, howevever got, tc.expect = %v, ret = %v", tc.expect, ret)
+					t.Errorf("Expect tc.expect == ret, however got, tc.expect = %v, ret = %v", tc.expect, ret)
 				}
 			}
 		})
