@@ -844,7 +844,7 @@
 **Implemented enhancements:**
 
 - Link for the example on deploying ingress controller is not valid [\#686](https://github.com/kubernetes/ingress-gce/issues/686)
-- If readiness probe is on port different than the service \(app\) port - ingress failes to sync the correct healthcheck [\#647](https://github.com/kubernetes/ingress-gce/issues/647)
+- If readiness probe is on port different than the service \(app\) port - ingress fails to sync the correct healthcheck [\#647](https://github.com/kubernetes/ingress-gce/issues/647)
 
 **Fixed bugs:**
 
