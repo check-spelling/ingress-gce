@@ -44,7 +44,7 @@ func (r RecorderProducerMock) Recorder(ns string) record.EventRecorder {
 	return &record.FakeRecorder{}
 }
 
-// GloablEventf records a Cluster level event not attached to a given object.
+// GlobalEventf records a Cluster level event not attached to a given object.
 func GlobalEventf(r record.EventRecorder, eventtype, reason, messageFmt string, args ...interface{}) {
 	// Using an empty ObjectReference to indicate no associated
 	// resource. This apparently works, see the package
