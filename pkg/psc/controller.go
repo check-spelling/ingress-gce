@@ -621,7 +621,7 @@ func (c *Controller) ensureSAFinalizerRemoved(cr *sav1.ServiceAttachment) error 
 // for a K8s Service
 func validateResourceReference(ref v1.TypedLocalObjectReference) error {
 	if ref.APIGroup != nil && *ref.APIGroup != "" {
-		return fmt.Errorf("invalid resource reference: %s, apiGroup must be emptry or nil", *ref.APIGroup)
+		return fmt.Errorf("invalid resource reference: %s, apiGroup must be empty or nil", *ref.APIGroup)
 	}
 
 	if strings.ToLower(ref.Kind) != svcKind {
