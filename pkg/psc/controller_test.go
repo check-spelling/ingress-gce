@@ -1302,7 +1302,7 @@ func syncServiceAttachmentLister(controller *Controller) error {
 	return nil
 }
 
-// verifyServiceAttachmentCRDeletion will verify that the provicded ServiceAttachment CR
+// verifyServiceAttachmentCRDeletion will verify that the provided ServiceAttachment CR
 // does not have the service attachment finalizer and that the deletion timestamp has been
 // set
 func verifyServiceAttachmentCRDeletion(controller *Controller, sa *sav1.ServiceAttachment) error {
