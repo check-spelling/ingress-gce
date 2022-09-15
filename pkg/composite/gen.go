@@ -241,7 +241,7 @@ type Backend struct {
 	// Not available if the backend's balancingMode is CONNECTION.
 	MaxRatePerInstance float64 `json:"maxRatePerInstance,omitempty"`
 	// Optional parameter to define a target capacity for the
-	// UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage
+	// UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage
 	// guidelines, see Utilization balancing mode.
 	MaxUtilization  float64  `json:"maxUtilization,omitempty"`
 	ForceSendFields []string `json:"-"`
