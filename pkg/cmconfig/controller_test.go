@@ -46,7 +46,7 @@ func TestController(t *testing.T) {
 	testcases := []struct {
 		desc                 string
 		defaultConfigMapData map[string]string
-		updateConifgMapData  map[string]string
+		updateConfigMapData  map[string]string
 		wantConfig           *Config
 		wantUpdateConfig     *Config
 		wantStop             bool
@@ -56,7 +56,7 @@ func TestController(t *testing.T) {
 		{
 			desc:                 "No configMap config exists, controller should return default config",
 			defaultConfigMapData: nil,
-			updateConifgMapData:  nil,
+			updateConfigMapData:  nil,
 			wantConfig:           &defaultConfig,
 			wantUpdateConfig:     nil,
 			wantStop:             false,
@@ -66,7 +66,7 @@ func TestController(t *testing.T) {
 		{
 			desc:                 "Update a default value shouldn't trigger restart",
 			defaultConfigMapData: nil,
-			updateConifgMapData:  map[string]string{"enable-asm": "false"},
+			updateConfigMapData:  map[string]string{"enable-asm": "false"},
 			wantConfig:           &defaultConfig,
 			wantUpdateConfig:     &defaultConfig,
 			wantStop:             false,
@@ -76,7 +76,7 @@ func TestController(t *testing.T) {
 		{
 			desc:                 "update the default config should trigger a restart",
 			defaultConfigMapData: map[string]string{"enable-asm": "false"},
-			updateConifgMapData:  map[string]string{"enable-asm": "true"},
+			updateConfigMapData:  map[string]string{"enable-asm": "true"},
 			wantConfig:           &defaultConfig,
 			wantUpdateConfig:     &Config{EnableASM: true, ASMServiceNEGSkipNamespaces: []string{"kube-system", "istio-system"}},
 			wantStop:             true,
@@ -86,7 +86,7 @@ func TestController(t *testing.T) {
 		{
 			desc:                 "invalide config should give the default config",
 			defaultConfigMapData: map[string]string{"enable-asm": "TTTTT"},
-			updateConifgMapData:  nil,
+			updateConfigMapData:  nil,
 			wantConfig:           &defaultConfig,
 			wantUpdateConfig:     nil,
 			wantStop:             false,
@@ -121,10 +121,10 @@ func TestController(t *testing.T) {
 				stopped = true
 			})
 
-			if tc.updateConifgMapData != nil {
+			if tc.updateConfigMapData != nil {
 				updateConfigMap := v1.ConfigMap{
 					ObjectMeta: metav1.ObjectMeta{Namespace: testNamespace, Name: testConfigMapName},
-					Data:       tc.updateConifgMapData}
+					Data:       tc.updateConfigMapData}
 
 				cmLister.Add(&updateConfigMap)
 				fakeClient.CoreV1().ConfigMaps(testNamespace).Update(context.TODO(), &updateConfigMap, metav1.UpdateOptions{})
