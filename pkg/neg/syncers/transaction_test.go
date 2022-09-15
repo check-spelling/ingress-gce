@@ -1628,7 +1628,7 @@ func checkNegDescription(t *testing.T, syncer *transactionSyncer, desc string) {
 	}
 }
 
-// checkCondition looks for the condition of the specified type and validates it has has the expectedStatus.
+// checkCondition looks for the condition of the specified type and validates it has the expectedStatus.
 // It will also validate that the transition timestamp is updated as expected, which is specified by expectTransitionTSUpdate.
 func checkCondition(t *testing.T, conditions []negv1beta1.Condition, conditionType string, previousTS metav1.Time, expectedStatus corev1.ConditionStatus, expectTransitionTSUpdate bool) metav1.Time {
 	var condition negv1beta1.Condition
