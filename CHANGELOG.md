@@ -1133,7 +1133,7 @@
 
 **Closed issues:**
 
-- GCE ingress stucks on "Creating ingress" status, existing ingresses don't update [\#470](https://github.com/kubernetes/ingress-gce/issues/470)
+- GCE ingress stuck on "Creating ingress" status, existing ingresses don't update [\#470](https://github.com/kubernetes/ingress-gce/issues/470)
 - Issue with multiple domains and SSL certificates when using ingress-gce [\#466](https://github.com/kubernetes/ingress-gce/issues/466)
 
 **Merged pull requests:**
