@@ -366,7 +366,7 @@ func validateAndModifyPrefixPathType(path v1.HTTPIngressPath) ([]string, error) 
 		return nil, fmt.Errorf("failed to validate prefix path type due to empty path")
 	}
 
-	// The Ingress spec defines Prefx path "/" as matching all paths
+	// The Ingress spec defines Prefix path "/" as matching all paths
 	if path.Path == "/" {
 		return []string{"/*"}, nil
 	}
