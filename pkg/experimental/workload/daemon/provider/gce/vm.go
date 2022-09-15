@@ -288,7 +288,7 @@ func NewVM() (vm *VM, err error) {
 		if strings.HasPrefix(name, labelPrefix) {
 			val, err := metadata.InstanceAttributeValue(name)
 			if err != nil {
-				klog.Errorf("faild to fetch label %s: %+v", name, err)
+				klog.Errorf("failed to fetch label %s: %+v", name, err)
 			}
 			vm.vmLabels[name[prefixLen:]] = val
 		}
