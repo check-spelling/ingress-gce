@@ -344,7 +344,7 @@ func (n *Namer) FirewallRule() string {
 func (n *Namer) LoadBalancer(key string) LoadBalancerName {
 	// TODO: Pipe the clusterName through, for now it saves code churn
 	// to just grab it globally, especially since we haven't decided how
-	// to handle namespace conflicts in the Ubernetes context.
+	// to handle namespace conflicts in the Kubernetes context.
 	parts := strings.Split(key, clusterNameDelimiter)
 	scrubbedName := strings.Replace(key, "/", "-", -1)
 	clusterName := n.UID()
