@@ -709,7 +709,7 @@
 **Fixed bugs:**
 
 - NEG controller should create NEG for default backend when enabled [\#767](https://github.com/kubernetes/ingress-gce/issues/767)
-- Removing Node Pool from Cluster Breaks Ingress Conroller [\#649](https://github.com/kubernetes/ingress-gce/issues/649)
+- Removing Node Pool from Cluster Breaks Ingress Controller [\#649](https://github.com/kubernetes/ingress-gce/issues/649)
 - Ingress controller should react to node scale down event from autoscaler [\#595](https://github.com/kubernetes/ingress-gce/issues/595)
 - BackendConfig OpenAPI spec [\#563](https://github.com/kubernetes/ingress-gce/issues/563)
 
