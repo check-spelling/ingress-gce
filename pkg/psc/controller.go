@@ -638,7 +638,7 @@ func needsUpdate(existingSA, desiredSA *ga.ServiceAttachment) (bool, error) {
 	// be the same as the one that eventually gets stored on the GCE object. For example
 	// the controller takes the forwarding rule from the GA FR resource, however if the GCE
 	// SA uses the Beta FR resource the self links will be different though the resource is
-	// the same. The same is true for the subnets. Due to this discrepency the GCE SA cannot
+	// the same. The same is true for the subnets. Due to this discrepancy the GCE SA cannot
 	// be compared with a reflect.DeepEqual.
 
 	// The TargetService on the GCE Service Attachment is the self link to the URL of the producer
