@@ -718,7 +718,7 @@ func LegacyForwardingRuleName(svc *api_v1.Service) string {
 }
 
 // L4LBResourceDescription stores the description fields for L4 ILB or NetLB resources.
-// This is useful to indetify which resources correspond to which L4 LB service.
+// This is useful to identify which resources correspond to which L4 LB service.
 type L4LBResourceDescription struct {
 	// ServiceName indicates the name of the service the resource is for.
 	ServiceName string `json:"networking.gke.io/service-name"`
