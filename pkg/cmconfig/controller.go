@@ -36,7 +36,7 @@ func NewConfigMapConfigController(kubeClient kubernetes.Interface, recorder reco
 		if errors.IsNotFound(err) {
 			klog.Infof("ConfigMapConfigController: Not found the configmap based config, using default config: %v", currentConfig)
 		} else {
-			klog.Warningf("ConfigMapConfigController failed to load config from api server, using the defualt config. Error: %v", err)
+			klog.Warningf("ConfigMapConfigController failed to load config from api server, using the default config. Error: %v", err)
 		}
 	} else {
 		if err := currentConfig.LoadValue(cm.Data); err != nil {
@@ -146,7 +146,7 @@ func (c *ConfigMapConfigController) processItem(obj interface{}, cancel func()) 
 		if errors.IsNotFound(err) {
 			klog.Infof("ConfigMapConfigController: Not found the configmap based config, using default config: %v", config)
 		} else {
-			klog.Warningf("ConfigMapConfigController failed to load config from api server, using the defualt config. Error: %v", err)
+			klog.Warningf("ConfigMapConfigController failed to load config from api server, using the default config. Error: %v", err)
 		}
 	} else {
 		c.currentConfigMapObject = cm
