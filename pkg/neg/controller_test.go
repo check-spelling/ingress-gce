@@ -401,7 +401,7 @@ func TestEnableNEGServiceWithL4ILB(t *testing.T) {
 		t.Fatalf("Failed to update service lister: %v", err)
 	}
 	if err = controller.processService(svcKey); err != nil {
-		t.Fatalf("Failed to process updated L4 ILB srvice: %v", err)
+		t.Fatalf("Failed to process updated L4 ILB service: %v", err)
 	}
 	expectedPortInfoMap = negtypes.NewPortInfoMapForVMIPNEG(testServiceNamespace, testServiceName,
 		controller.l4Namer, true)

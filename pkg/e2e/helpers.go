@@ -906,7 +906,7 @@ func CheckNegFinalizer(svcNeg negv1beta1.ServiceNetworkEndpointGroup) error {
 }
 
 // WaitForSvcNegErrorEvents waits for at least one of the possibles messages to be emitted on the
-// namespace:svcName serice until timeout
+// namespace:svcName service until timeout
 func WaitForSvcNegErrorEvents(s *Sandbox, svcName string, possibleMessages []string) error {
 	svc, err := s.f.Clientset.CoreV1().Services(s.Namespace).Get(context.TODO(), svcName, metav1.GetOptions{})
 	if svc == nil || err != nil {

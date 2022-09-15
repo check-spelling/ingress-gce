@@ -353,7 +353,7 @@ func TestServiceAttachmentConsumers(t *testing.T) {
 
 	saName := "my-sa"
 	svcName := "my-service"
-	saUID := "serivce-attachment-uid"
+	saUID := "service-attachment-uid"
 	frIPAddr := "1.2.3.4"
 	controller := newTestController("ZONAL")
 	gceSAName := controller.saNamer.ServiceAttachment(testNamespace, saName, saUID)
@@ -435,7 +435,7 @@ func TestServiceAttachmentUpdate(t *testing.T) {
 	saName := "my-sa"
 	svcName := "my-service"
 	otherServiceName := "my-other-service"
-	saUID := "serivce-attachment-uid"
+	saUID := "service-attachment-uid"
 	frIPAddr := "1.2.3.4"
 
 	subnet1 := "subnet-1"
@@ -683,7 +683,7 @@ func TestNeedsUpdate(t *testing.T) {
 
 func TestServiceAttachmentGarbageCollection(t *testing.T) {
 	svcNamePrefix := "my-service"
-	saUIDPrefix := "serivce-attachment-uid"
+	saUIDPrefix := "service-attachment-uid"
 	frIPAddr := "1.2.3.4"
 
 	testcases := []struct {
