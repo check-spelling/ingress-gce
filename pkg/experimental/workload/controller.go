@@ -285,7 +285,7 @@ func (c *Controller) processService(key string) error {
 		return nil
 	}
 	wlSelector := labels.Set(service.Spec.Selector).AsSelectorPreValidated()
-	// TODO: Use selector instaed of name to select endpointslices
+	// TODO: Use selector instead of name to select endpointslices
 	// esSelector := labels.Set(map[string]string{
 	// 	discovery.LabelServiceName: service.Name,
 	// 	discovery.LabelManagedBy:   controllerName,
