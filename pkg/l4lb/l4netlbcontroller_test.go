@@ -868,7 +868,7 @@ func TestHealthCheckWhenExternalTrafficPolicyWasUpdated(t *testing.T) {
 	hcNameNonShared := lc.namer.L4HealthCheck(svc.Namespace, svc.Name, false)
 	err = updateAndAssertExternalTrafficPolicy(newSvc, lc, v1.ServiceExternalTrafficPolicyTypeLocal, hcNameNonShared)
 	if err != nil {
-		t.Errorf("Error asserthing nonshared health check %v", err)
+		t.Errorf("Error asserting nonshared health check %v", err)
 	}
 	// delete shared health check if is created, update service to Cluster and
 	// check that non-shared health check was created
@@ -877,7 +877,7 @@ func TestHealthCheckWhenExternalTrafficPolicyWasUpdated(t *testing.T) {
 	// Update ExternalTrafficPolicy to Cluster check if shared HC was created
 	err = updateAndAssertExternalTrafficPolicy(newSvc, lc, v1.ServiceExternalTrafficPolicyTypeCluster, hcNameShared)
 	if err != nil {
-		t.Errorf("Error asserthing shared health check %v", err)
+		t.Errorf("Error asserting shared health check %v", err)
 	}
 	newSvc.DeletionTimestamp = &metav1.Time{}
 	updateNetLBService(lc, newSvc)
