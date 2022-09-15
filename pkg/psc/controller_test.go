@@ -778,7 +778,7 @@ func TestServiceAttachmentGarbageCollection(t *testing.T) {
 				t.Fatalf("failed to update service attachment to client: %q", err)
 			}
 
-			// sync the controller cache to have have current set of serviceAttachments
+			// sync the controller cache to have current set of serviceAttachments
 			syncServiceAttachmentLister(controller)
 
 			if tc.getError != nil || tc.deleteError != nil {
