@@ -3,7 +3,7 @@
 This doc outlines the steps needed to run Ingress-GCE binary locally:
 * Setup of a dev GKE cluster.
 * Authorization configuration to it.
-* Buldinging and running the Ingress-GCE bibnary locally.
+* Buldinging and running the Ingress-GCE binary locally.
 
 ## Create the cluster
 
