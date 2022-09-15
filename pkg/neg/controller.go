@@ -955,8 +955,8 @@ func gatherPortMappingFromService(svc *apiv1.Service) negtypes.SvcPortTupleSet {
 func getDestinationRulesFromStore(store cache.Store, svc *apiv1.Service, logger klog.Logger) (drs map[apimachinerytypes.NamespacedName]*istioV1alpha3.DestinationRule) {
 	drs = make(map[apimachinerytypes.NamespacedName]*istioV1alpha3.DestinationRule)
 	for _, obj := range store.List() {
-		drUnstructed := obj.(*unstructured.Unstructured)
-		targetServiceNamespace, drHost, dr, err := castToDestinationRule(drUnstructed)
+		drUnstructured := obj.(*unstructured.Unstructured)
+		targetServiceNamespace, drHost, dr, err := castToDestinationRule(drUnstructured)
 		if err != nil {
 			logger.Error(err, "Failed to cast Unstructured DestinationRule to DestinationRule")
 			continue
@@ -964,7 +964,7 @@ func getDestinationRulesFromStore(store cache.Store, svc *apiv1.Service, logger 
 
 		if targetServiceNamespace == svc.Namespace && drHost == svc.Name {
 			// We want to return DestinationRule namespace but not the target service namespace.
-			drs[apimachinerytypes.NamespacedName{Namespace: drUnstructed.GetNamespace(), Name: drUnstructed.GetName()}] = dr
+			drs[apimachinerytypes.NamespacedName{Namespace: drUnstructured.GetNamespace(), Name: drUnstructured.GetName()}] = dr
 		}
 	}
 	return
