@@ -413,7 +413,7 @@ func (c *Controller) garbageCollectServiceAttachments() {
 	}
 }
 
-// deleteServiceAttachment attemps to delete the GCE Service Attachment resource
+// deleteServiceAttachment attempts to delete the GCE Service Attachment resource
 // that corresponds to the provided CR. If successful, the finalizer on the CR
 // will be removed.
 func (c *Controller) deleteServiceAttachment(sa *sav1.ServiceAttachment) {
