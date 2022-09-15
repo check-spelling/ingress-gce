@@ -400,7 +400,7 @@ func shouldPodBeInNeg(podLister cache.Indexer, namespace, name string) bool {
 	return true
 }
 
-// shouldPodBeInDestinationRuleSubset return ture if pod match the DestinationRule subset labels.
+// shouldPodBeInDestinationRuleSubset return true if pod match the DestinationRule subset labels.
 func shouldPodBeInDestinationRuleSubset(podLister cache.Indexer, namespace, name string, subsetLabels string) bool {
 	if podLister == nil {
 		return false
