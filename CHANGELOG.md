@@ -935,7 +935,7 @@
 
 **Merged pull requests:**
 
-- Modify NameBelongToCluter to tolerate truncated cluster name suffix [\#650](https://github.com/kubernetes/ingress-gce/pull/650) ([freehan](https://github.com/freehan))
+- Modify NameBelongToCluster to tolerate truncated cluster name suffix [\#650](https://github.com/kubernetes/ingress-gce/pull/650) ([freehan](https://github.com/freehan))
 - Shorten the name of the namespace for test sandboxes [\#648](https://github.com/kubernetes/ingress-gce/pull/648) ([rramkumar1](https://github.com/rramkumar1))
 - Move lone function in kubeapi.go into existing utils.go [\#644](https://github.com/kubernetes/ingress-gce/pull/644) ([rramkumar1](https://github.com/rramkumar1))
 - Update CHANGELOG and version mapping for v1.4.3 [\#643](https://github.com/kubernetes/ingress-gce/pull/643) ([rramkumar1](https://github.com/rramkumar1))
