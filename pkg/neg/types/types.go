@@ -188,7 +188,7 @@ func NewPortInfoMapForVMIPNEG(namespace, name string, namer namer.L4ResourcesNam
 	return ret
 }
 
-// NewPortInfoMapWithDestinationRule create PortInfoMap based on a gaven DestinationRule.
+// NewPortInfoMapWithDestinationRule create PortInfoMap based on a given DestinationRule.
 // Return error message if the DestinationRule contains duplicated subsets.
 func NewPortInfoMapWithDestinationRule(namespace, name string, svcPortTupleSet SvcPortTupleSet, namer NetworkEndpointGroupNamer, readinessGate bool,
 	destinationRule *istioV1alpha3.DestinationRule) (PortInfoMap, error) {
