@@ -1014,7 +1014,7 @@ func GetServiceAttachment(ctx context.Context, c cloud.Cloud, saURL string) (*Se
 	return &ServiceAttachment{GA: sa}, nil
 }
 
-// CheckServiceAttachmentDeletion verfies that the Service Attachment does not exist
+// CheckServiceAttachmentDeletion verifies that the Service Attachment does not exist
 func CheckServiceAttachmentDeletion(ctx context.Context, c cloud.Cloud, saURL string) (bool, error) {
 	resID, err := cloud.ParseResourceURL(saURL)
 	if err != nil {

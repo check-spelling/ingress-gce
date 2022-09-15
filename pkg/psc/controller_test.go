@@ -1271,7 +1271,7 @@ func validateSAStatus(status sav1.ServiceAttachmentStatus, sa *ga.ServiceAttachm
 	return nil
 }
 
-// verifyServiceAttachmentFinalizer verfies that the provided ServiceAttachment CR
+// verifyServiceAttachmentFinalizer verifies that the provided ServiceAttachment CR
 // has the ServiceAttachmentFinalizerKey, otherwise it will return an error
 func verifyServiceAttachmentFinalizer(cr *sav1.ServiceAttachment) error {
 	finalizers := cr.GetFinalizers()

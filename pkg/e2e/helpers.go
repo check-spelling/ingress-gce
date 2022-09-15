@@ -1012,7 +1012,7 @@ func WaitForServiceAttachmentDeletion(s *Sandbox, saName, gceSAURL string) error
 	})
 }
 
-// CheckServiceAttachmentCRDeletion verifes that the CR does not exist
+// CheckServiceAttachmentCRDeletion verifies that the CR does not exist
 func CheckServiceAttachmentCRDeletion(s *Sandbox, saName string) bool {
 	_, err := s.f.SAClient.Get(s.Namespace, saName)
 	if err != nil {
@@ -1026,7 +1026,7 @@ func CheckServiceAttachmentCRDeletion(s *Sandbox, saName string) bool {
 	return false
 }
 
-// CheckServiceAttachment verifes that the CR spec matches the GCE Service Attachment configuration and
+// CheckServiceAttachment verifies that the CR spec matches the GCE Service Attachment configuration and
 // that the CR's Status was properly populated
 func CheckServiceAttachment(sa *fuzz.ServiceAttachment, cr *sav1.ServiceAttachment) (string, error) {
 	if err := CheckServiceAttachmentFinalizer(cr); err != nil {
@@ -1056,7 +1056,7 @@ func CheckServiceAttachment(sa *fuzz.ServiceAttachment, cr *sav1.ServiceAttachme
 	return sa.GA.SelfLink, nil
 }
 
-// CheckServiceAttachmentForwardingRule verfies that the forwarding rule used in the GCE Service Attachment creation
+// CheckServiceAttachmentForwardingRule verifies that the forwarding rule used in the GCE Service Attachment creation
 // is the same one created by the Service referenced in the CR
 func CheckServiceAttachmentForwardingRule(s *Sandbox, c cloud.Cloud, cr *sav1.ServiceAttachment) error {
 
@@ -1081,7 +1081,7 @@ func CheckServiceAttachmentForwardingRule(s *Sandbox, c cloud.Cloud, cr *sav1.Se
 	return nil
 }
 
-// CheckServiceAttachmentFinalizer verifes that the CR has the ServiceAttachment Finalizer
+// CheckServiceAttachmentFinalizer verifies that the CR has the ServiceAttachment Finalizer
 func CheckServiceAttachmentFinalizer(cr *sav1.ServiceAttachment) error {
 	finalizers := cr.GetFinalizers()
 	if l := len(finalizers); l != 1 {
