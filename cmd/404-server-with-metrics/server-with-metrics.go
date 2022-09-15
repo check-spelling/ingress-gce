@@ -61,7 +61,7 @@ func main() {
 	server.registerHandlers()
 	klog.Infof("Default 404 server is running with GOMAXPROCS(%d) on %s:%d\n", runtime.GOMAXPROCS(-1), hostName, *port)
 
-	// The main http server for handling NotFound and healthzrequests
+	// The main http server for handling NotFound and healthz requests
 	go func() {
 		err := server.httpServer.ListenAndServe()
 		if err != nil {
