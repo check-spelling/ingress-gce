@@ -51,7 +51,7 @@ func TestController(t *testing.T) {
 		wantUpdateConfig     *Config
 		wantStop             bool
 		wantLog              string
-		donotWantLog         string
+		doNotWantLog         string
 	}{
 		{
 			desc:                 "No configMap config exists, controller should return default config",
@@ -61,7 +61,7 @@ func TestController(t *testing.T) {
 			wantUpdateConfig:     nil,
 			wantStop:             false,
 			wantLog:              "Not found the configmap based config",
-			donotWantLog:         "",
+			doNotWantLog:         "",
 		},
 		{
 			desc:                 "Update a default value shouldn't trigger restart",
@@ -71,7 +71,7 @@ func TestController(t *testing.T) {
 			wantUpdateConfig:     &defaultConfig,
 			wantStop:             false,
 			wantLog:              "Not found the configmap based config",
-			donotWantLog:         "",
+			doNotWantLog:         "",
 		},
 		{
 			desc:                 "update the default config should trigger a restart",
@@ -81,7 +81,7 @@ func TestController(t *testing.T) {
 			wantUpdateConfig:     &Config{EnableASM: true, ASMServiceNEGSkipNamespaces: []string{"kube-system", "istio-system"}},
 			wantStop:             true,
 			wantLog:              "",
-			donotWantLog:         "Not found the configmap based config",
+			doNotWantLog:         "Not found the configmap based config",
 		},
 		{
 			desc:                 "invalide config should give the default config",
@@ -91,7 +91,7 @@ func TestController(t *testing.T) {
 			wantUpdateConfig:     nil,
 			wantStop:             false,
 			wantLog:              "unvalid value",
-			donotWantLog:         "",
+			doNotWantLog:         "",
 		},
 	}
 	for _, tc := range testcases {
@@ -141,8 +141,8 @@ func TestController(t *testing.T) {
 				t.Errorf("Missing log, got: %v, want: %v", logBuf.String(), tc.wantLog)
 			}
 
-			if tc.donotWantLog != "" && strings.Contains(logBuf.String(), tc.donotWantLog) {
-				t.Errorf("Having not wanted log, got: %v, not want: %v", logBuf.String(), tc.donotWantLog)
+			if tc.doNotWantLog != "" && strings.Contains(logBuf.String(), tc.doNotWantLog) {
+				t.Errorf("Having not wanted log, got: %v, not want: %v", logBuf.String(), tc.doNotWantLog)
 			}
 		})
 
