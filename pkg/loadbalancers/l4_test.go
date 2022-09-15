@@ -667,7 +667,7 @@ func TestHealthCheckFirewallDeletionWithNetLB(t *testing.T) {
 	// Create NetLB Service
 	netlbSvc := test.NewL4NetLBRBSService(8080)
 	l4NetLB := NewL4NetLB(netlbSvc, fakeGCE, meta.Regional, namer, record.NewFakeRecorder(100))
-	// make sure both ilb and netlb use the same l4 healtcheck instance
+	// make sure both ilb and netlb use the same l4 healthcheck instance
 	l4NetLB.healthChecks = l4.healthChecks
 
 	// create netlb resources
