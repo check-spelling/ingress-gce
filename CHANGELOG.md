@@ -1307,7 +1307,7 @@
 - Fix WaitForGCLBDeletion\(\) callers [\#371](https://github.com/kubernetes/ingress-gce/pull/371) ([MrHohn](https://github.com/MrHohn))
 - Update deploy script to edit copy of default backend service yaml [\#368](https://github.com/kubernetes/ingress-gce/pull/368) ([rramkumar1](https://github.com/rramkumar1))
 - Add simple e2e test for CDN & IAP  [\#367](https://github.com/kubernetes/ingress-gce/pull/367) ([rramkumar1](https://github.com/rramkumar1))
-- Swtich to use beta HealthCheck for NEG [\#366](https://github.com/kubernetes/ingress-gce/pull/366) ([freehan](https://github.com/freehan))
+- Switch to use beta HealthCheck for NEG [\#366](https://github.com/kubernetes/ingress-gce/pull/366) ([freehan](https://github.com/freehan))
 - Fix order-dependency in test cases [\#364](https://github.com/kubernetes/ingress-gce/pull/364) ([anfernee](https://github.com/anfernee))
 - Revendor GCE go client, cloud provider and fixes to make it work [\#362](https://github.com/kubernetes/ingress-gce/pull/362) ([freehan](https://github.com/freehan))
 - Fix missing gcloud command in e2e script [\#361](https://github.com/kubernetes/ingress-gce/pull/361) ([bowei](https://github.com/bowei))
