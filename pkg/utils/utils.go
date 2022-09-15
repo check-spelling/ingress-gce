@@ -61,7 +61,7 @@ const (
 	Create
 	// Update used to record updates in a sync pool.
 	Update
-	// Delete used to record deltions from a sync pool.
+	// Delete used to record deletions from a sync pool.
 	Delete
 	// AddInstances used to record a call to AddInstances.
 	AddInstances

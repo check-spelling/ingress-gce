@@ -1620,7 +1620,7 @@ func checkNegCR(t *testing.T, neg *negv1beta1.ServiceNetworkEndpointGroup, svcKe
 		}
 
 		if *ownerRefs[0].BlockOwnerDeletion != false {
-			t.Errorf("Expected neg owner ref not block owner deltion")
+			t.Errorf("Expected neg owner ref not block owner deletion")
 		}
 	}
 
