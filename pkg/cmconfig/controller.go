@@ -109,7 +109,7 @@ func (c *ConfigMapConfigController) RecordEvent(eventtype, reason, message strin
 	return true
 }
 
-// RegisterInformer regjister the configmap based config controller handler to the configapInformer which will watch the target
+// RegisterInformer regjister the configmap based config controller handler to the configMapInformer which will watch the target
 // configmap and send stop message to the stopCh if any valid change detected.
 func (c *ConfigMapConfigController) RegisterInformer(configMapInformer cache.SharedIndexInformer, cancel func()) {
 	configMapInformer.AddEventHandler(cache.ResourceEventHandlerFuncs{
