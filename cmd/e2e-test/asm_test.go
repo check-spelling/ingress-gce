@@ -163,7 +163,7 @@ func TestASMServiceAndDestinationRule(t *testing.T) {
 				}
 				if svc.inSkipNamespace {
 					if negStatus != nil {
-						t.Errorf("Service: %s/%s is in the ASM skip namespace, shoudln't have NEG Status. ASM Config: %v, NEGStatus got: %v",
+						t.Errorf("Service: %s/%s is in the ASM skip namespace, shouldn't have NEG Status. ASM Config: %v, NEGStatus got: %v",
 							sandbox.Namespace, svc.svcName, asmConfig, negStatus)
 					}
 				} else {
