@@ -1034,7 +1034,7 @@ type ForwardingRule struct {
 	// its filterLabels must match with corresponding labels provided in the
 	// metadata. If multiple metadataFilters are specified, all of them need
 	// to be satisfied in order to be considered a match. metadataFilters
-	// specified here will be applifed before those specified in the UrlMap
+	// specified here will be applied before those specified in the UrlMap
 	// that this ForwardingRule references. metadataFilters only applies to
 	// Loadbalancers that have their loadBalancingScheme set to
 	// INTERNAL_SELF_MANAGED.
