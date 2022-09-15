@@ -1404,7 +1404,7 @@ func TestUnknownNodes(t *testing.T) {
 		}
 
 		if !reflect.DeepEqual(expectedEndpoints, out) {
-			t.Errorf("endpoints were modified after syncInteral:\ngot %+v,\n expected %+v", out, expectedEndpoints)
+			t.Errorf("endpoints were modified after syncInternal:\ngot %+v,\n expected %+v", out, expectedEndpoints)
 		}
 	}
 }
