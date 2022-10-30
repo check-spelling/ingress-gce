@@ -31,7 +31,7 @@ import (
 	"k8s.io/ingress-gce/pkg/composite"
 	"k8s.io/ingress-gce/pkg/firewalls"
 	"k8s.io/ingress-gce/pkg/forwardingrules"
-	"k8s.io/ingress-gce/pkg/healthchecks"
+	"k8s.io/ingress-gce/pkg/healthchecksl4"
 	"k8s.io/ingress-gce/pkg/metrics"
 	"k8s.io/ingress-gce/pkg/utils"
 	"k8s.io/ingress-gce/pkg/utils/namer"
@@ -50,7 +50,7 @@ type L4NetLB struct {
 	Service         *corev1.Service
 	ServicePort     utils.ServicePort
 	NamespacedName  types.NamespacedName
-	healthChecks    healthchecks.L4HealthChecks
+	healthChecks    healthchecksl4.L4HealthChecks
 	forwardingRules ForwardingRulesProvider
 }
 
@@ -91,7 +91,7 @@ func NewL4NetLB(service *corev1.Service, cloud *gce.Cloud, scope meta.KeyType, n
 		Service:         service,
 		NamespacedName:  types.NamespacedName{Name: service.Name, Namespace: service.Namespace},
 		backendPool:     backends.NewPool(cloud, namer),
-		healthChecks:    healthchecks.L4(),
+		healthChecks:    healthchecksl4.GetInstance(),
 		forwardingRules: forwardingrules.New(cloud, meta.VersionGA, scope),
 	}
 	portId := utils.ServicePortID{Service: l4netlb.NamespacedName}
@@ -124,7 +124,7 @@ func (l4netlb *L4NetLB) EnsureFrontend(nodeNames []string, svc *corev1.Service) 
 	l4netlb.Service = svc
 
 	sharedHC := !helpers.RequestsOnlyLocalTraffic(svc)
-	hcResult := l4netlb.healthChecks.EnsureL4HealthCheck(l4netlb.Service, l4netlb.namer, sharedHC, l4netlb.scope, utils.XLB, nodeNames)
+	hcResult := l4netlb.healthChecks.EnsureHealthCheckWithFirewall(l4netlb.Service, l4netlb.namer, sharedHC, l4netlb.scope, utils.XLB, nodeNames)
 
 	if hcResult.Err != nil {
 		result.GCEResourceInError = hcResult.GceResourceInError
@@ -178,25 +178,20 @@ func (l4netlb *L4NetLB) EnsureLoadBalancerDeleted(svc *corev1.Service) *L4NetLBS
 	result := NewL4SyncResult(SyncTypeDelete)
 
 	frName := l4netlb.GetFRName()
-	key, err := l4netlb.createKey(frName)
-	if err != nil {
-		klog.Errorf("Failed to create key for forwarding rule resources with name %s for service %s - %v", frName, l4netlb.NamespacedName.String(), err)
-		result.Error = err
-		return result
-	}
 	// If any resource deletion fails, log the error and continue cleanup.
-	if err = utils.IgnoreHTTPNotFound(composite.DeleteForwardingRule(l4netlb.cloud, key, meta.VersionGA)); err != nil {
+	err := l4netlb.forwardingRules.Delete(frName)
+	if err != nil {
 		klog.Errorf("Failed to delete forwarding rule %s for service %s - %v", frName, l4netlb.NamespacedName.String(), err)
 		result.Error = err
 		result.GCEResourceInError = annotations.ForwardingRuleResource
 	}
-	name := l4netlb.ServicePort.BackendName()
-	if err = ensureAddressDeleted(l4netlb.cloud, name, l4netlb.cloud.Region()); err != nil {
+	if err = ensureAddressDeleted(l4netlb.cloud, frName, l4netlb.cloud.Region()); err != nil {
 		klog.Errorf("Failed to delete address for service %s - %v", l4netlb.NamespacedName.String(), err)
 		result.Error = err
 		result.GCEResourceInError = annotations.AddressResource
 	}
 
+	name := l4netlb.ServicePort.BackendName()
 	err = l4netlb.deleteFirewall(name)
 	if err != nil {
 		klog.Errorf("Failed to delete firewall rule %s for service %s - %v", name, l4netlb.NamespacedName.String(), err)
@@ -218,7 +213,7 @@ func (l4netlb *L4NetLB) EnsureLoadBalancerDeleted(svc *corev1.Service) *L4NetLBS
 	// When service is deleted we need to check both health checks shared and non-shared
 	// and delete them if needed.
 	for _, isShared := range []bool{true, false} {
-		resourceInError, err := l4netlb.healthChecks.DeleteHealthCheck(svc, l4netlb.namer, isShared, meta.Regional, utils.XLB)
+		resourceInError, err := l4netlb.healthChecks.DeleteHealthCheckWithFirewall(svc, l4netlb.namer, isShared, meta.Regional, utils.XLB)
 		if err != nil {
 			result.GCEResourceInError = resourceInError
 			result.Error = err

@@ -42,7 +42,7 @@ import (
 	"k8s.io/ingress-gce/pkg/annotations"
 	"k8s.io/ingress-gce/pkg/composite"
 	ingctx "k8s.io/ingress-gce/pkg/context"
-	"k8s.io/ingress-gce/pkg/healthchecks"
+	"k8s.io/ingress-gce/pkg/healthchecksl4"
 	"k8s.io/ingress-gce/pkg/loadbalancers"
 	"k8s.io/ingress-gce/pkg/test"
 	"k8s.io/ingress-gce/pkg/utils"
@@ -172,7 +172,7 @@ func checkBackendService(lc *L4NetLBController, svc *v1.Service) error {
 	igName := lc.namer.InstanceGroup()
 	for _, b := range bs.Backends {
 		if !strings.Contains(b.Group, igName) {
-			return fmt.Errorf("Backend Ingstance Group Link mismatch: %s != %s", igName, b.Group)
+			return fmt.Errorf("Backend Instance Group Link mismatch: %s != %s", igName, b.Group)
 		}
 	}
 	ig, err := lc.ctx.Cloud.GetInstanceGroup(igName, testGCEZone)
@@ -240,7 +240,7 @@ func newL4NetLBServiceController() *L4NetLBController {
 	for _, n := range nodes {
 		ctx.NodeInformer.GetIndexer().Add(n)
 	}
-	healthchecks.FakeL4(ctx.Cloud, ctx)
+	healthchecksl4.Fake(ctx.Cloud, ctx)
 	return NewL4NetLBController(ctx, stopCh)
 }
 
@@ -271,7 +271,7 @@ func validateAnnotationsDeleted(svc *v1.Service) error {
 		}
 	}
 	if len(unexpectedKeys) != 0 {
-		return fmt.Errorf("Unexpeceted annotations: %v, Service annotations %v", unexpectedKeys, svc.Annotations)
+		return fmt.Errorf("Unexpected annotations: %v, Service annotations %v", unexpectedKeys, svc.Annotations)
 	}
 	return nil
 }
@@ -640,7 +640,7 @@ func TestProcessServiceDeletionFailed(t *testing.T) {
 		expectedError string
 	}{
 		{addMockFunc: func(c *cloud.MockGCE) { c.MockForwardingRules.DeleteHook = test.DeleteForwardingRulesErrorHook },
-			expectedError: "DeleteForwardingRulesErrorHook"},
+			expectedError: "Failed to delete forwarding rule a, err: DeleteForwardingRulesErrorHook"},
 		{addMockFunc: func(c *cloud.MockGCE) { c.MockAddresses.DeleteHook = test.DeleteAddressErrorHook },
 			expectedError: "DeleteAddressErrorHook"},
 		{addMockFunc: func(c *cloud.MockGCE) { c.MockFirewalls.DeleteHook = test.DeleteFirewallsErrorHook },
@@ -868,16 +868,16 @@ func TestHealthCheckWhenExternalTrafficPolicyWasUpdated(t *testing.T) {
 	hcNameNonShared := lc.namer.L4HealthCheck(svc.Namespace, svc.Name, false)
 	err = updateAndAssertExternalTrafficPolicy(newSvc, lc, v1.ServiceExternalTrafficPolicyTypeLocal, hcNameNonShared)
 	if err != nil {
-		t.Errorf("Error asserthing nonshared health check %v", err)
+		t.Errorf("Error asserting nonshared health check %v", err)
 	}
 	// delete shared health check if is created, update service to Cluster and
 	// check that non-shared health check was created
 	hcNameShared := lc.namer.L4HealthCheck(svc.Namespace, svc.Name, true)
-	healthchecks.FakeL4(lc.ctx.Cloud, lc.ctx).DeleteHealthCheck(svc, lc.namer, true, meta.Regional, utils.XLB)
+	healthchecksl4.Fake(lc.ctx.Cloud, lc.ctx).DeleteHealthCheckWithFirewall(svc, lc.namer, true, meta.Regional, utils.XLB)
 	// Update ExternalTrafficPolicy to Cluster check if shared HC was created
 	err = updateAndAssertExternalTrafficPolicy(newSvc, lc, v1.ServiceExternalTrafficPolicyTypeCluster, hcNameShared)
 	if err != nil {
-		t.Errorf("Error asserthing shared health check %v", err)
+		t.Errorf("Error asserting shared health check %v", err)
 	}
 	newSvc.DeletionTimestamp = &metav1.Time{}
 	updateNetLBService(lc, newSvc)

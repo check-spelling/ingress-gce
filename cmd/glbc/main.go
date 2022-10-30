@@ -26,7 +26,7 @@ import (
 	flag "github.com/spf13/pflag"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/ingress-gce/pkg/frontendconfig"
-	"k8s.io/ingress-gce/pkg/healthchecks"
+	"k8s.io/ingress-gce/pkg/healthchecksl4"
 	"k8s.io/ingress-gce/pkg/ingparams"
 	"k8s.io/ingress-gce/pkg/l4lb"
 	"k8s.io/ingress-gce/pkg/psc"
@@ -270,13 +270,16 @@ func runControllers(ctx *ingctx.ControllerContext) {
 	lbc := controller.NewLoadBalancerController(ctx, stopCh)
 	if ctx.EnableASMConfigMap {
 		ctx.ASMConfigController.RegisterInformer(ctx.ConfigMapInformer, func() {
-			lbc.Stop(false) // We want to trigger a restart, don't have to clean up all the resources.
+			// We want to trigger a restart, don't have to clean up all the resources.
+			if err := lbc.Stop(false); err != nil {
+				klog.Errorf("Failed to stop the load balancer controller: %v", err)
+			}
 		})
 	}
 
 	fwc := firewalls.NewFirewallController(ctx, flags.F.NodePortRanges.Values())
 
-	healthchecks.InitializeL4(ctx.Cloud, ctx)
+	healthchecksl4.Initialize(ctx.Cloud, ctx)
 
 	if flags.F.RunL4Controller {
 		l4Controller := l4lb.NewILBController(ctx, stopCh)

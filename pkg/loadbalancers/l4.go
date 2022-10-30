@@ -31,7 +31,7 @@ import (
 	"k8s.io/ingress-gce/pkg/composite"
 	"k8s.io/ingress-gce/pkg/firewalls"
 	"k8s.io/ingress-gce/pkg/forwardingrules"
-	"k8s.io/ingress-gce/pkg/healthchecks"
+	"k8s.io/ingress-gce/pkg/healthchecksl4"
 	"k8s.io/ingress-gce/pkg/metrics"
 	"k8s.io/ingress-gce/pkg/utils"
 	"k8s.io/ingress-gce/pkg/utils/namer"
@@ -51,8 +51,8 @@ type L4 struct {
 	Service         *corev1.Service
 	ServicePort     utils.ServicePort
 	NamespacedName  types.NamespacedName
-	healthChecks    healthchecks.L4HealthChecks
 	forwardingRules ForwardingRulesProvider
+	healthChecks    healthchecksl4.L4HealthChecks
 }
 
 // L4ILBSyncResult contains information about the outcome of an L4 ILB sync. It stores the list of resource name annotations,
@@ -83,7 +83,7 @@ func NewL4Handler(params *L4ILBParams) *L4 {
 		namer:           params.Namer,
 		recorder:        params.Recorder,
 		Service:         params.Service,
-		healthChecks:    healthchecks.L4(),
+		healthChecks:    healthchecksl4.GetInstance(),
 		forwardingRules: forwardingrules.New(params.Cloud, meta.VersionGA, scope),
 	}
 	l4.NamespacedName = types.NamespacedName{Name: params.Service.Name, Namespace: params.Service.Namespace}
@@ -111,28 +111,24 @@ func (l4 *L4) EnsureInternalLoadBalancerDeleted(svc *corev1.Service) *L4ILBSyncR
 	// All resources use the L4Backend Name, except forwarding rule.
 	name := l4.namer.L4Backend(svc.Namespace, svc.Name)
 	frName := l4.GetFRName()
-	key, err := l4.CreateKey(frName)
-	if err != nil {
-		klog.Errorf("Failed to create key for LoadBalancer resources with name %s for service %s, err %v", frName, l4.NamespacedName.String(), err)
-		result.Error = err
-		return result
-	}
 	// If any resource deletion fails, log the error and continue cleanup.
-	if err = utils.IgnoreHTTPNotFound(composite.DeleteForwardingRule(l4.cloud, key, meta.VersionGA)); err != nil {
+	err := l4.forwardingRules.Delete(frName)
+	if err != nil {
 		klog.Errorf("Failed to delete forwarding rule for internal loadbalancer service %s, err %v", l4.NamespacedName.String(), err)
 		result.Error = err
 		result.GCEResourceInError = annotations.ForwardingRuleResource
 	}
-	if err = ensureAddressDeleted(l4.cloud, name, l4.cloud.Region()); err != nil {
+	if err = ensureAddressDeleted(l4.cloud, frName, l4.cloud.Region()); err != nil {
 		klog.Errorf("Failed to delete address for internal loadbalancer service %s, err %v", l4.NamespacedName.String(), err)
 		result.Error = err
 		result.GCEResourceInError = annotations.AddressResource
 	}
 
 	// delete firewall rule allowing load balancer source ranges
-	err = l4.deleteFirewall(name)
+	firewallName := l4.namer.L4Firewall(l4.Service.Namespace, l4.Service.Name)
+	err = l4.deleteFirewall(firewallName)
 	if err != nil {
-		klog.Errorf("Failed to delete firewall rule %s for internal loadbalancer service %s, err %v", name, l4.NamespacedName.String(), err)
+		klog.Errorf("Failed to delete firewall rule %s for internal loadbalancer service %s, err %v", firewallName, l4.NamespacedName.String(), err)
 		result.GCEResourceInError = annotations.FirewallRuleResource
 		result.Error = err
 	}
@@ -151,7 +147,7 @@ func (l4 *L4) EnsureInternalLoadBalancerDeleted(svc *corev1.Service) *L4ILBSyncR
 	// When service is deleted we need to check both health checks shared and non-shared
 	// and delete them if needed.
 	for _, isShared := range []bool{true, false} {
-		resourceInError, err := l4.healthChecks.DeleteHealthCheck(svc, l4.namer, isShared, meta.Global, utils.ILB)
+		resourceInError, err := l4.healthChecks.DeleteHealthCheckWithFirewall(svc, l4.namer, isShared, meta.Global, utils.ILB)
 		if err != nil {
 			result.GCEResourceInError = resourceInError
 			result.Error = err
@@ -206,7 +202,7 @@ func (l4 *L4) EnsureInternalLoadBalancer(nodeNames []string, svc *corev1.Service
 
 	// create healthcheck
 	sharedHC := !helpers.RequestsOnlyLocalTraffic(l4.Service)
-	hcResult := l4.healthChecks.EnsureL4HealthCheck(l4.Service, l4.namer, sharedHC, meta.Global, utils.ILB, nodeNames)
+	hcResult := l4.healthChecks.EnsureHealthCheckWithFirewall(l4.Service, l4.namer, sharedHC, meta.Global, utils.ILB, nodeNames)
 
 	if hcResult.Err != nil {
 		result.GCEResourceInError = hcResult.GceResourceInError
@@ -251,8 +247,7 @@ func (l4 *L4) EnsureInternalLoadBalancer(nodeNames []string, svc *corev1.Service
 	}
 	result.Annotations[annotations.BackendServiceKey] = name
 	// create fr rule
-	frName := l4.GetFRName()
-	fr, err := l4.ensureForwardingRule(frName, bs.SelfLink, options, existingFR)
+	fr, err := l4.ensureForwardingRule(bs.SelfLink, options, existingFR)
 	if err != nil {
 		klog.Errorf("EnsureInternalLoadBalancer: Failed to create forwarding rule - %v", err)
 		result.GCEResourceInError = annotations.ForwardingRuleResource
@@ -260,9 +255,9 @@ func (l4 *L4) EnsureInternalLoadBalancer(nodeNames []string, svc *corev1.Service
 		return result
 	}
 	if fr.IPProtocol == string(corev1.ProtocolTCP) {
-		result.Annotations[annotations.TCPForwardingRuleKey] = frName
+		result.Annotations[annotations.TCPForwardingRuleKey] = fr.Name
 	} else {
-		result.Annotations[annotations.UDPForwardingRuleKey] = frName
+		result.Annotations[annotations.UDPForwardingRuleKey] = fr.Name
 	}
 
 	// ensure firewalls
@@ -272,12 +267,13 @@ func (l4 *L4) EnsureInternalLoadBalancer(nodeNames []string, svc *corev1.Service
 		return result
 	}
 	// Add firewall rule for ILB traffic to nodes
+	firewallName := l4.namer.L4Firewall(l4.Service.Namespace, l4.Service.Name)
 	nodesFWRParams := firewalls.FirewallParams{
 		PortRanges:        portRanges,
 		SourceRanges:      sourceRanges.StringSlice(),
 		DestinationRanges: []string{fr.IPAddress},
 		Protocol:          string(protocol),
-		Name:              name,
+		Name:              firewallName,
 		NodeNames:         nodeNames,
 		L4Type:            utils.ILB,
 	}
@@ -287,7 +283,7 @@ func (l4 *L4) EnsureInternalLoadBalancer(nodeNames []string, svc *corev1.Service
 		result.Error = err
 		return result
 	}
-	result.Annotations[annotations.FirewallRuleKey] = name
+	result.Annotations[annotations.FirewallRuleKey] = firewallName
 	result.Annotations[annotations.FirewallRuleForHealthcheckKey] = hcResult.HCFirewallRuleName
 
 	result.MetricsState.InSuccess = true
